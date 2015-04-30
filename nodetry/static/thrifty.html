@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Thrift Shop</title>
+		
+		<!-- NEW -->
+        <script src="bcsocket.js"></script>             <!-- add transport -->
+        <script src="webclient/share.uncompressed.js"></script>      <!-- ShareJS -->
+        <script src="webclient/textarea.js"></script>   <!-- helper to attach textarea to ShareJS server -->
+        <!-- /NEW -->
+
+
+    </head>
+    <body>
+        <h1>ShareJS Tutorial</h1>
+        <textarea id='sharetext' ></textarea>
+
+        <!-- NEW -->
+        <script>
+            // get the textarea element 
+            var elem = document.getElementById("sharetext");
+            // connect to the server
+            var connection = sharejs.open('doc1', 'text', function(error, doc) {
+                // this function is called once the connection is opened
+                //console.log("connection opened");
+                if (error) {
+                    console.log("ERROR:", error);
+                } else {
+                	console.log("no error");
+                    // attach the ShareJS document to the textarea
+                    doc.attach_textarea(elem);
+                }
+            });
+        </script>
+       	<!-- /NEW -->
+
+    </body>
+</html>
