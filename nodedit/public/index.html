@@ -1,0 +1,162 @@
+<!-- <!DOCTYPE HTML> 
+<html lang="en"> 
+<head>
+<title>Collaborative Code Editor</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+<meta http-equiv="Content-Language" content="en-us"> 
+
+
+<script src="http://ajaxorg.github.com/ace/build/src/ace.js"></script>  
+
+    <script src="/bcsocket.js"></script> 
+<script src="text.js"></script>
+<script src="/share.js"></script>
+<script src="/ace.js"></script>
+
+<script src="channel/bcsocket.js"></script>
+
+<script src="share.js"></script>
+
+
+
+
+</head>
+
+<body>
+<div id="editor"></div>
+
+<script>
+    var editor = ace.edit("editor");
+
+    sharejs.open('hello', 'text', 'http://localhost:3000', function(error, doc) {
+        doc.attach_ace(editor);
+    });
+
+
+var socket = new BCSocket(null, {reconnect: true});
+var sjs = new sharejs.Connection(socket);
+
+var doc = sjs.get('docs', 'hello');
+
+// Subscribe to changes
+doc.subscribe();
+
+// This will be called when we have a live copy of the server's data.
+doc.whenReady(function() {
+  console.log('doc ready, data: ', doc.getSnapshot());
+
+  // Create a JSON document with value x:5
+  if (!doc.type) doc.create('text');
+  doc.attachTextarea(document.getElementById('pad'));
+});
+
+
+
+<h1>ShareJS Tutorial</h1>
+    <textarea id="editor" autofocus>Connecting...</textarea>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script src="/text.js"></script>
+    <script src="/share.js"></script>
+    <script src="json0.js"></script>
+    <script src="/bcsocket.js"></script>
+
+
+    
+    
+    <script>
+     $(document).ready(function () {
+     	console.log("hey there!");
+       var socket = new BCSocket(null, { reconnect: true });
+       //var sharejsSocket = new window.sharejs.Connection(socket);
+       var share = new sharejs.Connection(socket);
+
+       var doc = sharejs.get("docs", "hello");
+       doc.subscribe();
+       doc.whenReady(function () {
+     console.log("doc ready, data: ", doc.getSnapshot());
+     if (!doc.type) {
+       doc.create("text");
+     }
+     doc.attachTextarea(document.getElementById("editor"));
+       });
+     });
+    </script>
+
+
+
+</body>
+
+</html> -->
+
+
+
+<!-- <html>
+  <head>
+    <title>I dont fuck with you</title>
+  </head>
+  <body>
+    <h1>Work bitch</h1>
+<textarea id='pad' autofocus>Connecting...</textarea>
+<script src="channel/bcsocket.js"></script>
+<script src="/text.js"></script>
+<script src="/share.js"></script>
+<script>
+var socket = new BCSocket(null, {reconnect: true});
+var sjs = new sharejs.Connection(socket);
+
+//var doc = sjs.get('docs', 'hello');
+var doc = sjs.get();
+
+// Subscribe to changes
+doc.subscribe();
+
+// This will be called when we have a live copy of the server's data.
+doc.whenReady(function() {
+  console,log('doc')	
+  console.log('doc ready, data: ', doc.getSnapshot());
+
+  // Create a JSON document with value x:5
+  if (!doc.type) doc.create('text');
+  doc.attachTextarea(document.getElementById('pad'));
+});
+  </body>
+</html>
+ -->
+<html>
+    <head>
+        <title>Thrift Shop</title>
+    
+    <!-- NEW -->
+        <script src="channel/bcsocket.js"></script>             <!-- add transport -->
+        <script src="share.uncompressed.js"></script>      <!-- ShareJS -->
+        <script src="textarea.js"></script>   <!-- helper to attach textarea to ShareJS server -->
+        <!-- /NEW -->
+
+
+    </head>
+    <body>
+        <h1>New York</h1>
+        <textarea id='sharetext' ></textarea>
+
+        <!-- NEW -->
+        <script>
+            // get the textarea element 
+            var elem = document.getElementById("sharetext");
+            // connect to the server
+            var connection = sharejs.open('doc1', 'text', function(error, doc) {
+                // this function is called once the connection is opened
+                //console.log("connection opened");
+                if (error) {
+                    console.log("ERROR:", error);
+                } else {
+                  console.log("no error");
+                    // attach the ShareJS document to the textarea
+                    doc.attach_textarea(elem);
+                }
+            });
+        </script>
+        <!-- /NEW -->
+
+    </body>
+</html>
