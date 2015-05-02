@@ -85,7 +85,7 @@ var backend = livedb.client(db);
       cors: "*" //this is needed for cross origin communication - basically across mutiple ports
     },
     db: {
-      type: "none"
+      type: "mongodb"
     }
   };
 
