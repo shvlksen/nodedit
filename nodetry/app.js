@@ -85,7 +85,7 @@ var backend = livedb.client(db);
       cors: "*" //this is needed for cross origin communication - basically across mutiple ports
     },
     db: {
-      type: "mongodb"
+      type: "none"
     }
   };
 
@@ -95,11 +95,12 @@ var backend = livedb.client(db);
 
   ShareJS.attach(server, ShareJSOpts);
 
-  port = 5000;
+ port = process.env.PORT || 5000; //for deployment where port can't be specified
 
   server.listen(port, function() {
     return console.log("Listening on " + port);
   });
 
+//server.listen();
 }).call(this);
 
